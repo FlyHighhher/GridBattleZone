@@ -21,14 +21,6 @@ board_player = board_creation(size)
 board_computer = board_creation(size)
 
 
-# Print out variables for boards
-print("Player's board:")
-print_board(board_player)
-
-print("\nComputer's board:")
-print_board(board_computer)
-
-
 # Ship placement function on the board
 def place_ships(board, num):
     for _ in range(num):
@@ -49,14 +41,37 @@ place_ships(board_computer, 5)
 def get_user_guess():
     while True:
         try:
-            row = int(input("Please enter a row between 0-19: "))
-            col = int(input("Please enter a column between 0-19: "))
-            if 0 <= row < 20 and 0 <= col < 20:
+            row = int(input(f"Enter row (0-{size-1}): "))
+            col = int(input(f"Enter column (0-{size-1}): "))
+            if 0 <= row < size and 0 <= col < size:
                 return row, col
             else:
-                print("Invalid data. Row and column must be between 0-19.")
+                print(f"Invalid data. Row and column must be between 0 and {size-1}.")
         except ValueError:
-            print("Invalid data. Please input a number between 0-19.")
+            print("Invalid data. Please input a number.")
 
 
-user_guess = get_user_guess
+# Function for user turn handling
+def user_turn(board, guess):
+    row, col = guess
+    if board[row][col] == "X":
+        print("Ship hit!")
+        board[row][col] = "H"
+    else:
+        print("Missed a shot!")
+
+# Print out variables for boards
+while True:
+    print("Player's board:")
+    print_board(board_player)
+
+    print("\nComputer's board:")
+    print_board(board_computer)
+
+    print("Player's turn:")
+    user_guess = get_user_guess()
+    user_turn(board_computer, user_guess)
+
+    if all("X" not in row for row in board_computer):
+        print("Congratulations! You destroyed all enemy ships! You won the day!")
+        break
