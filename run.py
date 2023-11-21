@@ -43,3 +43,20 @@ def place_ships(board, num):
 # Ship placement variables
 place_ships(board_player, 5)
 place_ships(board_computer, 5)
+
+
+# Function for user input asking row and column
+def get_user_guess():
+    while True:
+        try:
+            row = int(input("Please enter a row between 0-19: "))
+            col = int(input("Please enter a column between 0-19: "))
+            if 0 <= row < 20 and 0 <= col < 20:
+                return row, col
+            else:
+                print("Invalid data. Row and column must be between 0-19.")
+        except ValueError:
+            print("Invalid data. Please input a number between 0-19.")
+
+
+user_guess = get_user_guess
