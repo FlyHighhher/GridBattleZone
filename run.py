@@ -21,20 +21,28 @@ board_player = board_creation(size)
 board_computer = board_creation(size)
 
 
+# Function for random values generation for row and column
+def random_coordinates(board):
+    row = random.randint(0, len(board) - 1)
+    col = random.randint(0, len(board[0]) - 1)
+    return row, col
+
+
 # Ship placement function on the board
 def place_ships(board, num):
     for _ in range(num):
-        row = random.randint(0, len(board) - 1)
-        col = random.randint(0, len(board[0]) - 1)
+        row, col = random_coordinates(board)
         while board[row][col] == "X":
-            row = random.randint(0, len(board) - 1)
-            col = random.randint(0, len(board[0]) - 1)
+            row, col = random_coordinates(board)
         board[row][col] = "X"
 
 
+# A constant for a number of ships
+NUM_SHIPS = 5
+
 # Ship placement variables
-place_ships(board_player, 5)
-place_ships(board_computer, 5)
+place_ships(board_player, NUM_SHIPS)
+place_ships(board_computer, NUM_SHIPS)
 
 
 # Function for user input asking row and column
@@ -46,7 +54,7 @@ def get_user_guess():
             if 0 <= row < size and 0 <= col < size:
                 return row, col
             else:
-                print(f"Invalid data. Row and column must be between 0 and {size-1}.")
+                print(f"Row and column must be between 0 and {size-1}.")
         except ValueError:
             print("Invalid data. Please input a number.")
 
@@ -59,6 +67,7 @@ def user_turn(board, guess):
         board[row][col] = "H"
     else:
         print("Missed a shot!")
+
 
 # Print out variables for boards
 while True:
@@ -73,5 +82,5 @@ while True:
     user_turn(board_computer, user_guess)
 
     if all("X" not in row for row in board_computer):
-        print("Congratulations! You destroyed all enemy ships! You won the day!")
+        print("Congratulations! Enemy ships are sunk! You won the day!")
         break
