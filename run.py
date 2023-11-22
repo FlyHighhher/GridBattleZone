@@ -1,28 +1,29 @@
 # Provide functions related to random number generation.
 import random
 
-# Game board creation grid size for user prompt grid size.
-size = int(input("Enter the size of the grid: "))
-
-
 # Function for board creation
 def board_creation(size):
+    """
+    Game board creation of given size.
+    """
     return [["0" for _ in range(size)] for _ in range(size)]
 
 
 # Function for game board creation
-def print_board(board):
+def print_board(board, header=""):
+    """
+    Printing out the game board.
+    """
+    print(header)
     for row in board:
         print(" ".join(row))
 
 
-# Variables for board creation
-board_player = board_creation(size)
-board_computer = board_creation(size)
-
-
 # Function for random values generation for row and column
 def random_coordinates(board):
+    """
+    Random row and column coordinates generation within the game board.
+    """
     row = random.randint(0, len(board) - 1)
     col = random.randint(0, len(board[0]) - 1)
     return row, col
@@ -30,6 +31,9 @@ def random_coordinates(board):
 
 # Ship placement function on the board
 def place_ships(board, num):
+    """
+    Ship placement on the board.
+    """
     for _ in range(num):
         row, col = random_coordinates(board)
         while board[row][col] == "X":
@@ -37,16 +41,11 @@ def place_ships(board, num):
         board[row][col] = "X"
 
 
-# A constant for a number of ships
-NUM_SHIPS = 5
-
-# Ship placement variables
-place_ships(board_player, NUM_SHIPS)
-place_ships(board_computer, NUM_SHIPS)
-
-
 # Function for user input asking row and column
-def get_user_guess():
+def get_user_guess(size):
+    """
+    Get the valid input from user for grid coordinates.
+    """
     while True:
         try:
             row = int(input(f"Enter row (0-{size-1}): "))
@@ -61,6 +60,9 @@ def get_user_guess():
 
 # Function for user turn handling
 def user_turn(board, guess):
+    """
+    Handle the user's move.
+    """
     row, col = guess
     if board[row][col] == "X":
         print("Ship hit!")
@@ -68,17 +70,25 @@ def user_turn(board, guess):
     else:
         print("Missed a shot!")
 
+# Game setup
+size = int(input("Enter the size of the grid: "))
+# Variables for board creation
+board_player = board_creation(size)
+board_computer = board_creation(size)
+# A constant for a number of ships
+NUM_SHIPS = 5
+# Ship placement variables
+place_ships(board_player, NUM_SHIPS)
+place_ships(board_computer, NUM_SHIPS)
 
-# Print out variables for boards
+# Game loop
 while True:
-    print("Player's board:")
-    print_board(board_player)
+    print_board(board_player, "Player's board:")
 
-    print("\nComputer's board:")
-    print_board(board_computer)
+    print_board(board_computer, "Computer's board:")
 
     print("Player's turn:")
-    user_guess = get_user_guess()
+    user_guess = get_user_guess(size)
     user_turn(board_computer, user_guess)
 
     if all("X" not in row for row in board_computer):
