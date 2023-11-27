@@ -1,6 +1,7 @@
 # Provide functions related to random number generation.
 import random
 
+
 # Function for board creation
 def board_creation(size):
     """
@@ -59,7 +60,7 @@ def get_user_guess(size):
 
 
 # Function for user turn handling
-def user_turn(board, guess):
+def user_turn(board, guess, guess_board):
     """
     Handle the user's move.
     """
@@ -67,30 +68,34 @@ def user_turn(board, guess):
     if board[row][col] == "X":
         print("Ship hit!")
         board[row][col] = "H"
+        guess_board[row][col] = "H"
     else:
         print("Missed a shot!")
+        guess_board[row][col] = "M"
+
 
 # Game setup
 size = int(input("Enter the size of the grid: "))
 # Variables for board creation
 board_player = board_creation(size)
-board_computer = board_creation(size)
+board_computer_ships = board_creation(size)
+board_computer_guess = board_creation(size)
 # A constant for a number of ships
 NUM_SHIPS = 5
 # Ship placement variables
 place_ships(board_player, NUM_SHIPS)
-place_ships(board_computer, NUM_SHIPS)
+place_ships(board_computer_ships, NUM_SHIPS)
 
 # Game loop
 while True:
     print_board(board_player, "Player's board:")
 
-    print_board(board_computer, "Computer's board:")
+    print_board(board_computer_guess, "Computer's board:")
 
     print("Player's turn:")
     user_guess = get_user_guess(size)
-    user_turn(board_computer, user_guess)
+    user_turn(board_computer_ships, user_guess, board_computer_guess)
 
-    if all("X" not in row for row in board_computer):
+    if all("X" not in row for row in board_computer_ships):
         print("Congratulations! Enemy ships are sunk! You won the day!")
         break
