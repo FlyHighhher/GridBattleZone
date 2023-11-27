@@ -66,11 +66,27 @@ def user_turn(board, guess, guess_board):
     """
     row, col = guess
     if board[row][col] == "X":
-        print("Ship hit!")
+        print("You hit computer's ship!")
         board[row][col] = "H"
         guess_board[row][col] = "H"
     else:
         print("Missed a shot!")
+        guess_board[row][col] = "M"
+
+
+# Function for computer's turn handling
+def computer_turn(player_board, guess_board):
+    """
+    Handle the computer's move.
+    """
+    row, col = random_coordinates(player_board)
+    if player_board[row][col] == "X":
+        print("Computer hit your ship!")
+        player_board[row][col] = "H"
+        guess_board[row][col] = "H"
+    else:
+        print("Computer missed a shot!")
+        player_board[row][col] = "M"
         guess_board[row][col] = "M"
 
 
@@ -79,7 +95,7 @@ size = int(input("Enter the size of the grid: "))
 # Variables for board creation
 board_player = board_creation(size)
 board_computer_ships = board_creation(size)
-board_computer_guess = board_creation(size)
+guess_board_player = board_creation(size)
 # A constant for a number of ships
 NUM_SHIPS = 5
 # Ship placement variables
@@ -89,13 +105,20 @@ place_ships(board_computer_ships, NUM_SHIPS)
 # Game loop
 while True:
     print_board(board_player, "Player's board:")
-
-    print_board(board_computer_guess, "Computer's board:")
+    print_board(guess_board_player, "Player's guess board:")
 
     print("Player's turn:")
     user_guess = get_user_guess(size)
-    user_turn(board_computer_ships, user_guess, board_computer_guess)
+    user_turn(board_computer_ships, user_guess, guess_board_player)
+    print_board(board_player, "Player's board")
 
     if all("X" not in row for row in board_computer_ships):
         print("Congratulations! Enemy ships are sunk! You won the day!")
+        break
+    
+    print("Computer's turn:")
+    computer_turn(board_player, board_computer_ships)
+
+    if all("X" not in row for row in board_player):
+        print("Game over! Enemy sank your ships! You lost!")
         break
