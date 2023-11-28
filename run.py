@@ -18,7 +18,7 @@ def print_board(board, header=""):
         print(" ".join(row))
 
 
-def random_coordinates(board, chosen_coordinates):
+def random_coordinates(board, chosen_coordinates, avoid_player_coordinates=False):
     """
     Random row and column coordinates generation within the game board.
     Avoiding coordinates that have been already chosen.
@@ -26,7 +26,8 @@ def random_coordinates(board, chosen_coordinates):
     while True:
         row, col = random.randint(0, len(board) - 1), \
             random.randint(0, len(board[0]) - 1)
-        if (row, col) not in chosen_coordinates:
+        if (row, col) not in chosen_coordinates and \
+                (not avoid_player_coordinates or (row, col) not in player_chosen_coordinates):
             return row, col
 
 
@@ -126,6 +127,6 @@ while True:
 
     print_board(board_player, "Player's board:")
 
-    if all(cell == "H" for row in board_player for cell in row):
+    if all(all(cell != "X" for cell in row) for row in board_player):
         print("Game over! Enemy sank your ships! You lost!")
         break
