@@ -103,6 +103,20 @@ def get_grid_size():
             print("Invalid data. Please input a number.")
 
 
+def calculate_ship_amount(size):
+    """
+    Function for setting the amount ships depending on the grid size.
+    """
+    if size == 5:
+        return 10
+    if size == 10:
+        return 30
+    if size == 15:
+        return 50
+    else:
+        raise ValueError("Invalid grid size")
+
+
 # Game setup
 valid_grid_sizes = [5, 10, 15]
 size = get_grid_size()
@@ -111,7 +125,7 @@ board_player = board_creation(size)
 board_computer = board_creation(size)
 guess_board_player = board_creation(size)
 guess_board_computer = board_creation(size)
-NUM_SHIPS = 5
+NUM_SHIPS = calculate_ship_amount(size)
 
 # Keeping track of chosen coordinates
 player_chosen_coordinates = set()
