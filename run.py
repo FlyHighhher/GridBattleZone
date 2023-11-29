@@ -11,11 +11,13 @@ def board_creation(size):
 
 def print_board(board, header=""):
     """
-    Printing out the game board.
+    Printing out the game board including the indices.
     """
     print(header)
-    for row in board:
-        print(" ".join(row))
+    col_indices = [str(i) for i in range(len(board))]
+    print("  " + " ".join(col_indices))
+    for i, row in enumerate(board):
+        print(f"{i}|{' '.join(row)}")
 
 
 def random_coordinates(board, chosen_coordinates, avoid_player_coordinates=False, player_chosen_coordinates=None):
