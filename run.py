@@ -18,7 +18,7 @@ def print_board(board, header=""):
         print(" ".join(row))
 
 
-def random_coordinates(board, chosen_coordinates, avoid_player_coordinates=False):
+def random_coordinates(board, chosen_coordinates, avoid_player_coordinates=False, player_chosen_coordinates=None):
     """
     Random row and column coordinates generation within the game board.
     Avoiding coordinates that have been already chosen.
@@ -80,7 +80,7 @@ def computer_turn(player_board, guess_board, chosen_coordinates):
     """
     Handle the computer's move.
     """
-    row, col = random_coordinates(player_board, chosen_coordinates)
+    row, col = random_coordinates(player_board, chosen_coordinates, player_chosen_coordinates=chosen_coordinates)
     if player_board[row][col] == "X":
         print("Computer hit your ship!")
         player_board[row][col] = "H"
@@ -107,10 +107,14 @@ computer_chosen_coordinates = set()
 # Ship placement variables
 place_ships(board_player, NUM_SHIPS, player_chosen_coordinates)
 place_ships(board_computer, NUM_SHIPS, computer_chosen_coordinates)
+# Round count
+round_count = 0
 
 
 # Game loop
 while True:
+    round_count += 1
+    print(f"\n--- Round {round_count} ---")
 
     print("Player's turn:")
     user_guess = get_user_guess(size, guess_board_player)
