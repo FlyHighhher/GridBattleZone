@@ -20,7 +20,12 @@ def print_board(board, header=""):
         print(f"{i}|{' '.join(row)}")
 
 
-def random_coordinates(board, chosen_coordinates, avoid_player_coordinates=False, player_chosen_coordinates=None):
+def random_coordinates(
+    board,
+    chosen_coordinates,
+    avoid_player_coordinates=False,
+    player_chosen_coordinates=None
+):
     """
     Random row and column coordinates generation within the game board.
     Avoiding coordinates that have been already chosen.
@@ -29,7 +34,9 @@ def random_coordinates(board, chosen_coordinates, avoid_player_coordinates=False
         row, col = random.randint(0, len(board) - 1), \
             random.randint(0, len(board[0]) - 1)
         if (row, col) not in chosen_coordinates and \
-                (not avoid_player_coordinates or (row, col) not in player_chosen_coordinates):
+                (
+                    not avoid_player_coordinates
+                    or (row, col) not in player_chosen_coordinates):
             return row, col
 
 
@@ -82,7 +89,10 @@ def computer_turn(player_board, guess_board, chosen_coordinates):
     """
     Handle the computer's move.
     """
-    row, col = random_coordinates(player_board, chosen_coordinates, player_chosen_coordinates=player_chosen_coordinates)
+    row, col = random_coordinates(
+        player_board,
+        chosen_coordinates,
+        player_chosen_coordinates)
     if player_board[row][col] == "X":
         print("Computer hit your ship!")
         player_board[row][col] = "H"
@@ -97,7 +107,8 @@ def computer_turn(player_board, guess_board, chosen_coordinates):
 def get_grid_size():
     while True:
         try:
-            size = int(input("Enter the size of the grid (choose from 5, 10, 15): "))
+            size = int(
+                input("Enter the size of the grid (choose from 5, 10, 15): "))
             if size in [5, 10, 15]:
                 return size
             else:
@@ -180,7 +191,10 @@ while True:
         break
 
     print("Computer's turn:")
-    computer_turn(board_player, guess_board_computer, computer_chosen_coordinates)
+    computer_turn(
+        board_player,
+        guess_board_computer,
+        computer_chosen_coordinates)
 
     print_board(board_player, "Player's board:")
 
