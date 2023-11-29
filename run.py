@@ -4,14 +4,15 @@ import random
 
 def board_creation(size):
     """
-    Game board creation of given size.
+    Creates a square game board with given size.
     """
     return [["0" for _ in range(size)] for _ in range(size)]
 
 
 def print_board(board, header=""):
     """
-    Printing out the game board including the indices.
+    Prints the board with indices for row and column
+    and a header text on top.
     """
     print(header)
     col_indices = [str(i) for i in range(len(board))]
@@ -42,7 +43,10 @@ def random_coordinates(
 
 def place_ships(board, num, chosen_coordinates):
     """
-    Ship placement on the board.
+    The function randomly selects coordinates
+    on the board and places ships marked as ('X')
+    at those positions. By also ensuring that there is no
+    overlap with already chosen coordinates.
     """
     for _ in range(num):
         row, col = random_coordinates(board, chosen_coordinates)
@@ -54,8 +58,9 @@ def place_ships(board, num, chosen_coordinates):
 
 def get_user_guess(size, guess_board):
     """
-    Get the valid input from user for grid coordinates.
-    While also avoiding already chosen coordinates.
+    Function asks the user to input row and column coordinates within
+    the range. While also ensuring that the coordinates are valid and
+    have not been chosen on the guess board.
     """
     while True:
         try:
@@ -73,7 +78,8 @@ def get_user_guess(size, guess_board):
 
 def user_turn(board, guess, guess_board):
     """
-    Handle the user's move.
+    Updating the game board based on user's move. In case of a hit
+    it is marked on the board. In case of a miss it is also marked.
     """
     row, col = guess
     if board[row][col] == "X":
@@ -85,14 +91,21 @@ def user_turn(board, guess, guess_board):
         guess_board[row][col] = "M"
 
 
-def computer_turn(player_board, guess_board, chosen_coordinates):
+def computer_turn(
+    player_board,
+    guess_board,
+    chosen_coordinates
+):
     """
-    Handle the computer's move.
+    Handle's the computer's move on the board.
+    Function generates random coordinates and checks for hits and misses.
     """
     row, col = random_coordinates(
         player_board,
         chosen_coordinates,
-        player_chosen_coordinates)
+        avoid_player_coordinates=False,
+        player_chosen_coordinates=player_chosen_coordinates
+    )
     if player_board[row][col] == "X":
         print("Computer hit your ship!")
         player_board[row][col] = "H"
@@ -105,6 +118,10 @@ def computer_turn(player_board, guess_board, chosen_coordinates):
 
 
 def get_grid_size():
+    """
+    Function asks the user to input the size of the game grid
+    by also ensuring that is valid number.
+    """
     while True:
         try:
             size = int(
@@ -122,7 +139,7 @@ def calculate_ship_amount(size):
     Function for setting the amount ships depending on the grid size.
     """
     if size == 5:
-        return 10
+        return 8
     if size == 10:
         return 30
     if size == 15:
@@ -136,9 +153,9 @@ def calculate_max_rounds(size):
     Function for calculating maximum rounds based on grid size.
     """
     if size == 5:
-        return 20
+        return 17
     elif size == 10:
-        return 80
+        return 70
     elif size == 15:
         return 180
     else:
@@ -186,7 +203,7 @@ while True:
 
     print_board(guess_board_player, "Player's guess board:")
 
-    if all(all(cell != "X" for cell in row) for row in board_computer):
+    if all(all(cell == "H" for cell in row) for row in board_computer):
         print("Congratulations! Enemy ships are sunk! You won the day!")
         break
 
@@ -194,11 +211,12 @@ while True:
     computer_turn(
         board_player,
         guess_board_computer,
-        computer_chosen_coordinates)
+        computer_chosen_coordinates,
+    )
 
     print_board(board_player, "Player's board:")
 
-    if all(all(cell != "X" for cell in row) for row in board_player):
+    if all(all(cell == "H" for cell in row) for row in board_player):
         print("Game over! Enemy sank your ships! You lost!")
         break
 
