@@ -80,7 +80,7 @@ def computer_turn(player_board, guess_board, chosen_coordinates):
     """
     Handle the computer's move.
     """
-    row, col = random_coordinates(player_board, chosen_coordinates, player_chosen_coordinates=chosen_coordinates)
+    row, col = random_coordinates(player_board, chosen_coordinates, player_chosen_coordinates=player_chosen_coordinates)
     if player_board[row][col] == "X":
         print("Computer hit your ship!")
         player_board[row][col] = "H"
@@ -90,6 +90,7 @@ def computer_turn(player_board, guess_board, chosen_coordinates):
         player_board[row][col] = "M"
         guess_board[row][col] = "M"
     chosen_coordinates.add((row, col))
+
 
 def get_grid_size():
     while True:
@@ -115,6 +116,30 @@ def calculate_ship_amount(size):
         return 50
     else:
         raise ValueError("Invalid grid size")
+
+
+def calculate_max_rounds(size):
+    """
+    Function for calculating maximum rounds based on grid size.
+    """
+    if size == 5:
+        return 20
+    elif size == 10:
+        return 80
+    elif size == 15:
+        return 180
+    else:
+        raise ValueError("Invalid grid size")
+
+
+def check_draw(round_count, max_rounds):
+    """
+    Function for checking if the game has reached draw.
+    """
+    if round_count >= max_rounds:
+        print(f"Game Over! You both ran out of ammunition. It's a draw.")
+        return True
+    return False
 
 
 # Game setup
@@ -159,4 +184,8 @@ while True:
 
     if all(all(cell != "X" for cell in row) for row in board_player):
         print("Game over! Enemy sank your ships! You lost!")
+        break
+
+    max_rounds = calculate_max_rounds(size)
+    if check_draw(round_count, max_rounds):
         break
