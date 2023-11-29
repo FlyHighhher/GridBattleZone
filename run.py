@@ -91,9 +91,21 @@ def computer_turn(player_board, guess_board, chosen_coordinates):
         guess_board[row][col] = "M"
     chosen_coordinates.add((row, col))
 
+def get_grid_size():
+    while True:
+        try:
+            size = int(input("Enter the size of the grid (choose from 5, 10, 15): "))
+            if size in [5, 10, 15]:
+                return size
+            else:
+                print("Invalid grid size input. Please choose from 5, 10, 15.")
+        except ValueError:
+            print("Invalid data. Please input a number.")
+
 
 # Game setup
-size = int(input("Enter the size of the grid: "))
+valid_grid_sizes = [5, 10, 15]
+size = get_grid_size()
 # Variables for board creation
 board_player = board_creation(size)
 board_computer = board_creation(size)
