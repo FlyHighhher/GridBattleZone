@@ -180,9 +180,9 @@ NUM_SHIPS = calculate_ship_amount(size)
 MAX_ROUNDS = calculate_max_rounds(size)
 
 print(f"Welcome to GridBattleZone!\n"
-    f"You must sink {NUM_SHIPS} ships in order to win.\n"
-    f"You have limited number of rounds to defeat the computer.\n"
-    f"Make every shot count! You will have {MAX_ROUNDS} rounds in total.\n")
+      f"You must sink {NUM_SHIPS} ships in order to win.\n"
+      f"You have limited number of rounds to defeat the computer.\n"
+      f"Make every shot count! You will have {MAX_ROUNDS} rounds in total.\n")
 
 # Variables for board creation
 board_player = board_creation(size)

@@ -1,32 +1,41 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# GridBattleZone
 
-Welcome,
+## Overview
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **March 14, 2023**
+The game is simplified version of the classic Battleship game, typically played between two players. In this case it is a one player game, where user plays against the computer.
 
-## Reminders
+### Game Setup
 
-- Your code must be placed in the `run.py` file
-- Your dependencies must be placed in the `requirements.txt` file
-- Do not edit any of the other files or your code may not deploy properly
+* The player is prompted to choose the size of the game grid (5*5, 7*7, 10*10).
+* The number of ships is determined based on the chosen grid size (8 for 5 by 5, 15 for 7 by 7 and 30 for 10 by 10).
+* The maximum number of rounds is calculated based on the grid size ( 17 rounds for grid size 5, 35 rounds for grid size 7 and 70 rounds for grid size 10.)
+* Two game boards are created for the player and the computer along with corresponding guess boards.
 
-## Creating the Heroku app
+### Ship Placement
 
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
+Ships are randomly placed on both the player's and the computer's boards.
 
-1. `heroku/python`
-2. `heroku/nodejs`
+### Game Loop
 
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
+The game consist of a loop where each iteration represents a round. In each round: 
 
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
+* The player takes a turn by inputting a row and a column coordinates to guess the computers ship position.
+* The computer takes a turn by randomly choosing coordinates to guess the player's ship positions.
+* The game boards are updated to reflect hits ( marked as 'H' ) and misses ( markes as 'M' ).
+* The player's and the computer's boards are displayed to show the progress.
 
-Connect your GitHub repository and deploy as normal.
+### Winning and Losing Conditions
 
-## Constraints
+The game continues until one of the following conditions is met:
 
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
+* The player sinks all of the computer's ships ('H' in all cells of the computer's board)
+* The computer sinks all of the player's ships ('H' in all cells of the player's board)
+* The maximum number of rounds is reached, resulting in a draw.
 
----
+### Game Outcome Display
 
-Happy coding!
+The game concludes with a message indicating whether the player won, lost, or the game ended in a draw.
+
+### Game Flow Chart
+
+
