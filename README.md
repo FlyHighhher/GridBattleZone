@@ -38,4 +38,63 @@ The game concludes with a message indicating whether the player won, lost, or th
 
 ### Game Flow Chart
 
+![Flow Chart](/images/flowchart.png)
+
+## Features
+
+The key features for GridBattleZone are:
+
+### Grid Selection
+
+The player's are able to choose the size of the game grid at the beginning of the game. The options are 5 by 5, 7 by 7 and 10 by 10.
+
+### Dynamic Ship Placement
+
+The number of the ships is determined by the chosen grid size, providing a scalable and varied gameplay experience. Ships are randomly placed on the board.
+
+### Turn-Based Gameplay
+
+The game follows a turn-based structure, where the player and the computer take alternating turns to make guesses.
+
+### User Input Validation
+
+The game validates user input for row and column coordinates to ensure they are within the valid range and not have been chosen before.
+
+### Hit and Miss Feedback
+
+After each move, the game provides feedback to the player, indicating whether their guess was a hit or a miss.
+
+### Game Board Display
+
+The game displays the player's and the computer's boards after each move, showing the progress and the locations of hits and misses.
+
+### Winning/Losing Conditions
+
+The game has clear winning and losing coditions. Player wins if all computers ships are sunk. Computer wins if all players ships are sunk. And a draw is declared when the maximum number of rounds is reached.
+
+### Round Limit
+
+There is a maximum limit on the number of rounds, preventing the game from continuing indefinetly. This adds a strategic element to the gameplay.
+
+### Scalable Difficulty
+
+The difficulty scales with the grid size and number of ships, providing different levels of challenge.
+
+### Modular Functions
+
+The game code is organized into modular functions, making it readable and allowing for easy maintenance and expansion.
+
+### Game Outcome Messages
+
+The game provides clear and informative messages to indicate the outcome, such as whether the player won, lost, or if it's a draw.
+
+### Random Number Generation
+
+The game utilizes a random number generation function to determine ship placement and computer guesses, adding an element of unpredictability.
+
+## Validator PEP-8
+
+Python validator was used in order to validate to check if any errors were found. No errors were found.
+
+
 
