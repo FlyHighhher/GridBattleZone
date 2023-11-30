@@ -125,11 +125,11 @@ def get_grid_size():
     while True:
         try:
             size = int(
-                input("Enter the size of the grid (choose from 5, 10, 15): "))
-            if size in [5, 10, 15]:
+                input("Enter the size of the grid (choose from 5, 7, 10): "))
+            if size in [5, 7, 10]:
                 return size
             else:
-                print("Invalid grid size input. Please choose from 5, 10, 15.")
+                print("Invalid grid size input. Please choose from 5, 7, 10.")
         except ValueError:
             print("Invalid data. Please input a number.")
 
@@ -140,10 +140,10 @@ def calculate_ship_amount(size):
     """
     if size == 5:
         return 8
+    if size == 7:
+        return 15
     if size == 10:
         return 30
-    if size == 15:
-        return 50
     else:
         raise ValueError("Invalid grid size")
 
@@ -154,10 +154,10 @@ def calculate_max_rounds(size):
     """
     if size == 5:
         return 17
+    elif size == 7:
+        return 35
     elif size == 10:
         return 70
-    elif size == 15:
-        return 180
     else:
         raise ValueError("Invalid grid size")
 
@@ -173,7 +173,7 @@ def check_draw(round_count, max_rounds):
 
 
 # Game setup
-valid_grid_sizes = [5, 10, 15]
+valid_grid_sizes = [5, 7, 10]
 size = get_grid_size()
 # Variables for board creation
 board_player = board_creation(size)
