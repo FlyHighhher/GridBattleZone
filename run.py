@@ -175,6 +175,11 @@ def check_draw(round_count, max_rounds):
 # Game setup
 valid_grid_sizes = [5, 7, 10]
 size = get_grid_size()
+
+print(f"Welcome to GridBattleZone!\n"
+    f"You have limited number of rounds to defeat the computer.\n"
+    f"Make every shot count! You will have {calculate_max_rounds(size)} rounds in total.\n")
+
 # Variables for board creation
 board_player = board_creation(size)
 board_computer = board_creation(size)
