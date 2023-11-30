@@ -176,17 +176,19 @@ def check_draw(round_count, max_rounds):
 valid_grid_sizes = [5, 7, 10]
 size = get_grid_size()
 
+NUM_SHIPS = calculate_ship_amount(size)
+MAX_ROUNDS = calculate_max_rounds(size)
+
 print(f"Welcome to GridBattleZone!\n"
-    f"You must sink {NUM_SHIPS} in order to win.\n"
+    f"You must sink {NUM_SHIPS} ships in order to win.\n"
     f"You have limited number of rounds to defeat the computer.\n"
-    f"Make every shot count! You will have {calculate_max_rounds(size)} rounds in total.\n")
+    f"Make every shot count! You will have {MAX_ROUNDS} rounds in total.\n")
 
 # Variables for board creation
 board_player = board_creation(size)
 board_computer = board_creation(size)
 guess_board_player = board_creation(size)
 guess_board_computer = board_creation(size)
-NUM_SHIPS = calculate_ship_amount(size)
 
 # Keeping track of chosen coordinates
 player_chosen_coordinates = set()
