@@ -125,11 +125,11 @@ def get_grid_size():
     while True:
         try:
             size = int(
-                input("Enter the size of the grid (choose from 5, 7, 10): "))
-            if size in [5, 7, 10]:
+                input("Enter the size of the grid (choose from 3, 7, 10): "))
+            if size in [3, 7, 10]:
                 return size
             else:
-                print("Invalid grid size input. Please choose from 5, 7, 10.")
+                print("Invalid grid size input. Please choose from 3, 7, 10.")
         except ValueError:
             print("Invalid data. Please input a number.")
 
@@ -138,12 +138,12 @@ def calculate_ship_amount(size):
     """
     Function for setting the amount ships depending on the grid size.
     """
-    if size == 5:
-        return 8
+    if size == 3:
+        return 1
     if size == 7:
-        return 15
+        return 7
     if size == 10:
-        return 30
+        return 10
     else:
         raise ValueError("Invalid grid size")
 
@@ -152,8 +152,8 @@ def calculate_max_rounds(size):
     """
     Function for calculating maximum rounds based on grid size.
     """
-    if size == 5:
-        return 17
+    if size == 3:
+        return 5
     elif size == 7:
         return 35
     elif size == 10:
@@ -211,7 +211,7 @@ while True:
 
     print_board(guess_board_player, "Player's guess board:")
 
-    if all(all(cell == "H" for cell in row) for row in board_computer):
+    if all(cell != "X" for row in board_computer for cell in row):
         print("Congratulations! Enemy ships are sunk! You won the day!")
         break
 
@@ -219,12 +219,12 @@ while True:
     computer_turn(
         board_player,
         guess_board_computer,
-        computer_chosen_coordinates,
+        computer_chosen_coordinates
     )
 
     print_board(board_player, "Player's board:")
 
-    if all(all(cell == "H" for cell in row) for row in board_player):
+    if all(cell != "X" for row in board_computer for cell in row):
         print("Game over! Enemy sank your ships! You lost!")
         break
 
