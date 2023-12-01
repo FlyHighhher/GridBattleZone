@@ -104,7 +104,7 @@ def computer_turn(
         player_board,
         chosen_coordinates,
         avoid_player_coordinates=False,
-        player_chosen_coordinates=player_chosen_coordinates
+        player_chosen_coordinates=chosen_coordinates
     )
     if player_board[row][col] == "X":
         print("Computer hit your ship!")
@@ -125,11 +125,11 @@ def get_grid_size():
     while True:
         try:
             size = int(
-                input("Enter the size of the grid (choose from 3, 7, 10): "))
-            if size in [3, 7, 10]:
+                input("Enter the size of the grid (choose from 3, 5, 7): "))
+            if size in [3, 5, 7]:
                 return size
             else:
-                print("Invalid grid size input. Please choose from 3, 7, 10.")
+                print("Invalid grid size input. Please choose from 3, 5, 7.")
         except ValueError:
             print("Invalid data. Please input a number.")
 
@@ -140,10 +140,10 @@ def calculate_ship_amount(size):
     """
     if size == 3:
         return 1
+    if size == 5:
+        return 4
     if size == 7:
-        return 7
-    if size == 10:
-        return 10
+        return 8
     else:
         raise ValueError("Invalid grid size")
 
@@ -153,11 +153,11 @@ def calculate_max_rounds(size):
     Function for calculating maximum rounds based on grid size.
     """
     if size == 3:
-        return 5
+        return 10
+    elif size == 5:
+        return 18
     elif size == 7:
-        return 35
-    elif size == 10:
-        return 70
+        return 38
     else:
         raise ValueError("Invalid grid size")
 
