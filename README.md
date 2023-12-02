@@ -4,18 +4,18 @@
 
 The game is simplified version of the classic Battleship game, typically played between two players. In this case it is a one player game, where user plays against the computer.
 
-### Game Setup
+#### Game Setup
 
 * The player is prompted to choose the size of the game grid (3*3, 5*5, 7*7).
 * The number of ships is determined based on the chosen grid size (1 for 3 by 3, 4 for 5 by 5 and 8 for 7 by 7).
 * The maximum number of rounds is calculated based on the grid size ( 8 rounds for grid size 3*3, 18 rounds for grid size 5*5 and 38 rounds for grid size 7*7.)
 * Two game boards are created for the player and the computer along with corresponding guess boards.
 
-### Ship Placement
+#### Ship Placement
 
 Ships are randomly placed on both the player's and the computer's boards.
 
-### Game Loop
+#### Game Loop
 
 The game consist of a loop where each iteration represents a round. In each round: 
 
@@ -24,7 +24,7 @@ The game consist of a loop where each iteration represents a round. In each roun
 * The game boards are updated to reflect hits ( marked as 'H' ) and misses ( markes as 'M' ).
 * The player's and the computer's boards are displayed to show the progress.
 
-### Winning and Losing Conditions
+#### Winning and Losing Conditions
 
 The game continues until one of the following conditions is met:
 
@@ -32,11 +32,11 @@ The game continues until one of the following conditions is met:
 * The computer sinks all of the player's ships ('H' in all cells of the player's board)
 * The maximum number of rounds is reached, resulting in a draw.
 
-### Game Outcome Display
+#### Game Outcome Display
 
 The game concludes with a message indicating whether the player won, lost, or the game ended in a draw.
 
-### Game Flow Chart
+#### Game Flow Chart
 
 ![Flow Chart](/images/flowchart.png)
 
@@ -44,51 +44,51 @@ The game concludes with a message indicating whether the player won, lost, or th
 
 The key features for GridBattleZone are:
 
-### Grid Selection
+#### Grid Selection
 
 The player's are able to choose the size of the game grid at the beginning of the game. The options are 3 by 3, 5 by 5 and 7 by 7.
 
-### Dynamic Ship Placement
+#### Dynamic Ship Placement
 
 The number of the ships is determined by the chosen grid size, providing a scalable and varied gameplay experience. Ships are randomly placed on the board.
 
-### Turn-Based Gameplay
+#### Turn-Based Gameplay
 
 The game follows a turn-based structure, where the player and the computer take alternating turns to make guesses.
 
-### User Input Validation
+#### User Input Validation
 
 The game validates user input for row and column coordinates to ensure they are within the valid range and not have been chosen before.
 
-### Hit and Miss Feedback
+#### Hit and Miss Feedback
 
 After each move, the game provides feedback to the player, indicating whether their guess was a hit or a miss.
 
-### Game Board Display
+#### Game Board Display
 
 The game displays the player's and the computer's boards after each move, showing the progress and the locations of hits and misses.
 
-### Winning/Losing Conditions
+#### Winning/Losing Conditions
 
 The game has clear winning and losing coditions. Player wins if all computers ships are sunk. Computer wins if all players ships are sunk. And a draw is declared when the maximum number of rounds is reached.
 
-### Round Limit
+#### Round Limit
 
 There is a maximum limit on the number of rounds, preventing the game from continuing indefinetly. This adds a strategic element to the gameplay.
 
-### Scalable Difficulty
+#### Scalable Difficulty
 
 The difficulty scales with the grid size and number of ships, providing different levels of challenge.
 
-### Modular Functions
+#### Modular Functions
 
 The game code is organized into modular functions, making it readable and allowing for easy maintenance and expansion.
 
-### Game Outcome Messages
+#### Game Outcome Messages
 
 The game provides clear and informative messages to indicate the outcome, such as whether the player won, lost, or if it's a draw.
 
-### Random Number Generation
+#### Random Number Generation
 
 The game utilizes a random number generation function to determine ship placement and computer guesses, adding an element of unpredictability.
 
