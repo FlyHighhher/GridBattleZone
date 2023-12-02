@@ -8,7 +8,7 @@ The game is simplified version of the classic Battleship game, typically played 
 
 * The player is prompted to choose the size of the game grid (3*3, 5*5, 7*7).
 * The number of ships is determined based on the chosen grid size (1 for 3 by 3, 4 for 5 by 5 and 8 for 7 by 7).
-* The maximum number of rounds is calculated based on the grid size ( 8 rounds for grid size 3*3, 18 rounds for grid size 5*5 and 38 rounds for grid size 7*7.)
+* The maximum number of rounds is calculated based on the grid size ( 8 rounds for grid size 3 by 3, 18 rounds for grid size 5 by 5 and 38 rounds for grid size 7 by 7.)
 * Two game boards are created for the player and the computer along with corresponding guess boards.
 
 #### Ship Placement
