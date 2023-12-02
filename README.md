@@ -6,9 +6,9 @@ The game is simplified version of the classic Battleship game, typically played 
 
 ### Game Setup
 
-* The player is prompted to choose the size of the game grid (5*5, 7*7, 10*10).
-* The number of ships is determined based on the chosen grid size (8 for 5 by 5, 15 for 7 by 7 and 30 for 10 by 10).
-* The maximum number of rounds is calculated based on the grid size ( 17 rounds for grid size 5, 35 rounds for grid size 7 and 70 rounds for grid size 10.)
+* The player is prompted to choose the size of the game grid (3*3, 5*5, 7*7).
+* The number of ships is determined based on the chosen grid size (1 for 3 by 3, 4 for 5 by 5 and 8 for 7 by 7).
+* The maximum number of rounds is calculated based on the grid size ( 8 rounds for grid size 3*3, 18 rounds for grid size 5*5 and 38 rounds for grid size 7*7.)
 * Two game boards are created for the player and the computer along with corresponding guess boards.
 
 ### Ship Placement
@@ -46,7 +46,7 @@ The key features for GridBattleZone are:
 
 ### Grid Selection
 
-The player's are able to choose the size of the game grid at the beginning of the game. The options are 5 by 5, 7 by 7 and 10 by 10.
+The player's are able to choose the size of the game grid at the beginning of the game. The options are 3 by 3, 5 by 5 and 7 by 7.
 
 ### Dynamic Ship Placement
 
@@ -95,6 +95,18 @@ The game utilizes a random number generation function to determine ship placemen
 ## Validator PEP-8
 
 Python validator was used in order to validate to check if any errors were found. No errors were found.
+
+## Acknowledgements
+
+* Mentor David Bowers was of great help in giving good feedback and ideas for creation of this game.
+* Code Institute's walkthrough project Love-Sandwiches was very helpful in creating this project.
+* Pythondex battleship game creation with source code was of great inspiration to this game.
+
+## Improvements
+
+* In future versions of the game a improvement of adjustable difficulty levels is considerable.
+* Customizable settings in terms of changing the amount of ships and rounds could be also a good future improvement goal.
+* Different ship types - as 1, 2, 3 and 4 grid size ships could be a good addition in future versions.
 
 
 

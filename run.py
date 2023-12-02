@@ -153,7 +153,7 @@ def calculate_max_rounds(size):
     Function for calculating maximum rounds based on grid size.
     """
     if size == 3:
-        return 10
+        return 8
     elif size == 5:
         return 18
     elif size == 7:
